@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Estante de Livros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>📚 Minha Estante</h1>
+        <p>Organize suas leituras!</p>
+    </header>
+
+    <main>
+        <section class="adicionar">
+            <h2>Adicionar novo livro</h2>
+
+            <input
+                type="text"
+                id="nomeLivro"
+                placeholder="Digite o nome do livro">
+
+            <button onclick="adicionarLivro()">
+                Adicionar livro
+            </button>
+        </section>
+
+        <section class="estante">
+            <h2>Meus Livros</h2>
+
+            <div class="abas">
+                <button onclick="mostrarLivros('Lendo')">
+                    Lendo
+                </button>
+
+                <button onclick="mostrarLivros('Quero Ler')">
+                    Quero Ler
+                </button>
+
+                <button onclick="mostrarLivros('Lidos')">
+                    Lidos
+                </button>
+            </div>
+
+            <div id="listaLivros"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
