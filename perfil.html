@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil — Minha Estante de Livros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-auth">
+
+    <header class="auth-header">
+        <div class="auth-header-inner">
+            <a href="index.html" class="marca-auth">📚 Minha Estante</a>
+            <nav class="auth-nav">
+                <a href="index.html">Estante</a>
+                <a href="perfil.html">Perfil</a>
+                <button type="button" id="btnSairPerfil" class="btn-nav-auth">Sair</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <section class="perfil-card">
+            <div class="perfil-topo">
+                <div class="perfil-avatar" id="perfilAvatar">L</div>
+                <div class="perfil-dados">
+                    <h1 id="perfilNome">Leitor</h1>
+                    <p id="perfilEmail">leitor@email.com</p>
+                    <p id="perfilBio" class="perfil-bio-texto">Organizando leituras e descobrindo novas histórias.</p>
+                </div>
+            </div>
+
+            <div class="perfil-metricas">
+                <div class="metrica-box">
+                    <strong id="perfilTotalLidos">0</strong>
+                    <span>Lidos</span>
+                </div>
+                <div class="metrica-box">
+                    <strong id="perfilTotalLendo">0</strong>
+                    <span>Lendo</span>
+                </div>
+                <div class="metrica-box">
+                    <strong id="perfilTotalQuero">0</strong>
+                    <span>Quero Ler</span>
+                </div>
+                <div class="metrica-box">
+                    <strong id="perfilMediaNotas">—</strong>
+                    <span>Média de notas</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="estante">
+            <div class="estante-topo">
+                <h2>Editar informações do perfil</h2>
+            </div>
+
+            <form id="formPerfil" class="perfil-form">
+                <label for="inputNomePerfil">Nome</label>
+                <input type="text" id="inputNomePerfil" required placeholder="Seu nome">
+
+                <label for="inputBioPerfil">Bio / Preferências de leitura</label>
+                <input type="text" id="inputBioPerfil" placeholder="Ex.: Fantasia, ficção científica e romances">
+
+                <button type="submit">Salvar alterações</button>
+                <p id="feedbackPerfil" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section class="estante">
+            <div class="estante-topo">
+                <h2>Avaliados recentemente</h2>
+                <a href="index.html" class="link-estante">Ver estante completa →</a>
+            </div>
+            <div id="listaFavoritosPerfil" class="grid-posters"></div>
+        </section>
+    </main>
+
+    <script src="perfil.js"></script>
+</body>
+</html>

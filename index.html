@@ -3,51 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Estante de Livros</title>
+    <title>Acesso — Minha Estante de Livros</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="pagina-auth">
 
-    <header>
-        <h1>📚 Minha Estante</h1>
-        <p>Organize suas leituras!</p>
+    <header class="auth-header">
+        <div class="auth-header-inner">
+            <a href="index.html" class="marca-auth">📚 Minha Estante</a>
+            <nav class="auth-nav">
+                <a href="index.html">Estante</a>
+                <button type="button" class="btn-nav-auth" onclick="switchTab('login')">Entrar</button>
+                <button type="button" class="btn-nav-auth destaque" onclick="switchTab('register')">Criar conta</button>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="adicionar">
-            <h2>Adicionar novo livro</h2>
-
-            <input
-                type="text"
-                id="nomeLivro"
-                placeholder="Digite o nome do livro">
-
-            <button onclick="adicionarLivro()">
-                Adicionar livro
-            </button>
+    <main class="auth-main">
+        <section class="auth-hero">
+            <h1>Acompanhe o que você lê. Salve o que quer ler.</h1>
+            <p>Entre na sua conta para montar sua estante, avaliar leituras e guardar seus favoritos.</p>
         </section>
 
-        <section class="estante">
-            <h2>Meus Livros</h2>
-
+        <section class="auth-box letterboxd-card">
             <div class="abas">
-                <button onclick="mostrarLivros('Lendo')">
-                    Lendo
-                </button>
-
-                <button onclick="mostrarLivros('Quero Ler')">
-                    Quero Ler
-                </button>
-
-                <button onclick="mostrarLivros('Lidos')">
-                    Lidos
-                </button>
+                <button type="button" id="tab-login" class="active">Entrar</button>
+                <button type="button" id="tab-register">Cadastrar</button>
             </div>
 
-            <div id="listaLivros"></div>
+            <form id="login-form" class="auth-form active">
+                <h2>Entrar na conta</h2>
+                <label for="login-email">E-mail</label>
+                <input type="email" id="login-email" required placeholder="seu@email.com">
+
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" required placeholder="Digite sua senha">
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <form id="register-form" class="auth-form">
+                <h2>Criar conta</h2>
+                <label for="reg-name">Nome</label>
+                <input type="text" id="reg-name" required placeholder="Como você quer ser chamado">
+
+                <label for="reg-email">E-mail</label>
+                <input type="email" id="reg-email" required placeholder="seu@email.com">
+
+                <label for="reg-password">Senha</label>
+                <input type="password" id="reg-password" required minlength="6" placeholder="Mínimo de 6 caracteres">
+
+                <button type="submit">Criar conta</button>
+            </form>
+
+            <p id="auth-feedback" aria-live="polite"></p>
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>

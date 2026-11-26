@@ -1,112 +1,119 @@
-// Lista de livros
-let livros = JSON.parse(localStorage.getItem("livros")) || [];
-let categoriaAtual = "Quero Ler";
+const USERS_KEY = "mvp_livros_users";
+const SESSION_KEY = "mvp_livros_session";
 
-// Adicionar livro
-function adicionarLivro() {
-    let nome = document.getElementById("nomeLivro").value;
+const tabLogin = document.getElementById("tab-login");
+const tabRegister = document.getElementById("tab-register");
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const feedback = document.getElementById("auth-feedback");
 
-    if (nome.trim() === "") {
-        alert("Por favor, digite o nome do livro!");
-        return;
+function getUsers() {
+    try {
+        return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+    } catch {
+        return [];
     }
-
-    let novoLivro = {
-        nome: nome,
-        status: "Quero Ler",
-        progresso: 0
-    };
-
-    livros.push(novoLivro);
-    salvarLivros();
-    document.getElementById("nomeLivro").value = "";
-    mostrarLivros("Quero Ler");
 }
 
-// Salvar livros no navegador
-function salvarLivros() {
-    localStorage.setItem("livros", JSON.stringify(livros));
+function saveUsers(users) {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
-// Mostrar livros por categoria
-function mostrarLivros(status) {
-    categoriaAtual = status;
-    let lista = document.getElementById("listaLivros");
-    lista.innerHTML = "";
-
-    let encontrados;
-    if (status === "Todos") {
-        encontrados = livros;
-    } else {
-        encontrados = livros.filter(function(livro) {
-            return livro.status === status;
-        });
+function setFeedback(message) {
+    if (feedback) {
+        feedback.textContent = message;
     }
+}
 
-    if (encontrados.length === 0) {
-        lista.innerHTML = "<p>Nenhum livro nesta categoria.</p>";
-        return;
-    }
+function switchTab(mode) {
+    const isLogin = mode === "login";
+    if (tabLogin) tabLogin.classList.toggle("active", isLogin);
+    if (tabRegister) tabRegister.classList.toggle("active", !isLogin);
+    if (loginForm) loginForm.classList.toggle("active", isLogin);
+    if (registerForm) registerForm.classList.toggle("active", !isLogin);
+    setFeedback("");
+}
 
-    encontrados.forEach(function(livro) {
-        let indice = livros.indexOf(livro);
-        let card = document.createElement("div");
-        card.className = "livro-card";
+function irParaEstante() {
+    window.location.href = "index.html";
+}
 
-        card.innerHTML = `
-            <h3>${livro.nome}</h3>
-            <p>Progresso: ${livro.progresso}%</p>
+if (tabLogin) {
+    tabLogin.addEventListener("click", () => switchTab("login"));
+}
 
-            <input
-                type="range"
-                min="0"
-                max="100"
-                value="${livro.progresso}"
-                onchange="atualizarProgresso(${indice}, this.value, this)"
-            >
+if (tabRegister) {
+    tabRegister.addEventListener("click", () => switchTab("register"));
+}
 
-            <select onchange="alterarStatus(${indice}, this.value)">
-                <option value="Quero Ler" ${livro.status === "Quero Ler" ? "selected" : ""}>Quero Ler</option>
-                <option value="Lendo" ${livro.status === "Lendo" ? "selected" : ""}>Lendo</option>
-                <option value="Lidos" ${livro.status === "Lidos" ? "selected" : ""}>Lidos</option>
-            </select>
+if (registerForm) {
+    registerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-            <br>
-            <button class="btn-excluir" onclick="excluirLivro(${indice})">Excluir</button>
-        `;
+        try {
+            const name = (document.getElementById("reg-name")?.value || "").trim();
+            const email = (document.getElementById("reg-email")?.value || "").trim().toLowerCase();
+            const password = document.getElementById("reg-password")?.value || "";
 
-        lista.appendChild(card);
+            if (!name || !email || !password) {
+                setFeedback("Preencha todos os campos.");
+                return;
+            }
+
+            const users = getUsers();
+            if (users.some((u) => u.email === email)) {
+                setFeedback("Este e-mail já está cadastrado.");
+                return;
+            }
+
+            const newUser = {
+                id: String(Date.now()),
+                name,
+                email,
+                password
+            };
+
+            users.push(newUser);
+            saveUsers(users);
+
+            const sessionData = { id: newUser.id, name: newUser.name, email: newUser.email };
+            localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
+            localStorage.setItem("usuarioLogado", JSON.stringify(sessionData));
+
+            irParaEstante();
+        } catch (err) {
+            console.error(err);
+            setFeedback("Erro ao cadastrar. Veja o console.");
+        }
     });
 }
 
-// Alterar status do livro
-function alterarStatus(indice, novoStatus) {
-    let livro = livros[indice];
-    livro.status = novoStatus;
-    salvarLivros();
-    mostrarLivros(novoStatus);
+if (loginForm) {
+    loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        try {
+            const email = (document.getElementById("login-email")?.value || "").trim().toLowerCase();
+            const password = document.getElementById("login-password")?.value || "";
+
+            const users = getUsers();
+            const user = users.find((u) => u.email === email && u.password === password);
+
+            if (!user) {
+                setFeedback("E-mail ou senha incorretos.");
+                return;
+            }
+
+            const sessionData = { id: user.id, name: user.name, email: user.email };
+            localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
+            localStorage.setItem("usuarioLogado", JSON.stringify(sessionData));
+
+            irParaEstante();
+        } catch (err) {
+            console.error(err);
+            setFeedback("Erro ao entrar. Veja o console.");
+        }
+    });
 }
 
-// Atualizar progresso do livro
-function atualizarProgresso(indice, novoProgresso, inputElement) {
-    livros[indice].progresso = Number(novoProgresso);
-    salvarLivros();
-
-    // Atualiza só o texto "Progresso: X%" sem recarregar a lista
-    let p = inputElement.previousElementSibling;
-    if (p) {
-        p.textContent = "Progresso: " + novoProgresso + "%";
-    }
-}
-
-// Excluir livro
-function excluirLivro(indice) {
-    livros.splice(indice, 1);
-    salvarLivros();
-    mostrarLivros(categoriaAtual);
-}
-
-// Mostrar os livros quando a página abrir
-window.addEventListener("DOMContentLoaded", function() {
-    mostrarLivros("Quero Ler");
-});
+switchTab("login");
