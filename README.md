@@ -6,7 +6,7 @@
 
 ## Participantes
 
-- **Integrante 1:** Emmylle Vitória
+- **Integrante 1:** Emmylle Vitória (m1ny00n)
 - **Integrante 2:** Josynara Lourdes
 - **Integrante 3:** Kauê Lennon
 - **Integrante 4:** Lúcia Samille
@@ -91,13 +91,10 @@ O sistema de resenhas de livros será desenvolvido utilizando uma arquitetura we
 
 ## 6. Tecnologias Utilizadas
 
-| Categoria | Tecnologia | Finalidade |
-|-----------|------------|------------|
-| Linguagem de Programação | JavaScript | [Finalidade] |
-| Front-end | [Nome] | [Finalidade] |
-| Back-end | [Nome] | [Finalidade] |
-| Banco de Dados | [Nome] | [Finalidade] |
-| Ferramentas | [Nome] | [Finalidade] |
+| Categoria | Tecnologia |
+|-----------|------------|
+| Linguagem de Programação | JavaScript | HTML | CSS |
+
 
 ---
 
