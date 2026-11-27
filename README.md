@@ -93,7 +93,7 @@ O sistema de resenhas de livros será desenvolvido utilizando uma arquitetura we
 
 | Categoria | Tecnologia |
 |-----------|------------|
-| Linguagem de Programação | JavaScript | HTML | CSS |
+| Linguagem de Programação | JavaScript, HTML, CSS |
 
 
 ---
