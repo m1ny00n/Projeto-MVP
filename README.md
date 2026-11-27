@@ -9,7 +9,7 @@
 - **Integrante 1:** Emmylle Vitória (m1ny00n)
 - **Integrante 2:** Josynara Lourdes
 - **Integrante 3:** Kauê Lennon
-- **Integrante 4:** Lúcia Samille
+- **Integrante 4:** Lucia Samille
 - **Integrante 5:** Yago Santana
 
 ---
