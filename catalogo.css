@@ -1,0 +1,40 @@
+h1 {
+    text-align: center;
+}
+body{
+    background-color: #51AE3F;
+}
+
+body{
+    color: #d9ef9f;
+}
+.card {
+    color: #51AE3F;
+    background-color: #d9ef9f;
+    border: 1px solid #60a03b;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#busca, #FiltroGenero {
+    display: block;
+    margin: 60px 0;
+    padding: 8px;
+    width: 60%;
+    background-color: #d9ef9f;
+    color: #5ca830;
+    border: #6aaa45;
+    
+}
+#busca ::placeholder{ 
+    color: #33703f;
+
+}
+
+
+#listalivros {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
