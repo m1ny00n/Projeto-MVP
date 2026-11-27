@@ -1,0 +1,110 @@
+.avaliacoes {
+    max-width: 980px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.cabecalho {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cabecalho h2 {
+    color: #4b3830;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.cabecalho p {
+    color: #795548;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.caixaavaliacoes {
+    background: white;
+    border: 1px solid #e6ddd5;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(75, 56, 48, 0.08);
+}
+
+.avaliar h3, .media h3, .listacomentarios h3 {
+    color: #4b3830;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.estrelas {
+    font-size: 32px;
+    color: #d4af37;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.comentar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.comentar label {
+    font-weight: bold;
+    color: #4b3830;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.comentar textarea {
+    padding: 12px;
+    border: 1px solid #d8c8bc;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.comentar button {
+    background-color: #795548;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.comentar button:hover {
+    background-color: #5d4037;
+}
+
+.media {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.numeroavaliacao {
+    font-size: 38px;
+    color: #795548;
+    font-weight: bold;
+}
+
+.listacomentarios {
+    margin-top: 25px;
+}
+
+.comentario {
+    border-top: 1px solid #e6ddd5;
+    padding: 15px 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.comentario strong {
+    color: #4b3830;
+}
+
+.estrelacomentada {
+    color: #d4af37;
+    margin: 5px 0;
+}
+
+.comentario p {
+    color: #666;
+}
